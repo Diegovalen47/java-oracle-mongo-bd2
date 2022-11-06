@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class Conexion {
+public class ConnectionOracleDB {
 
     public static void main(String[] args) {
 
@@ -8,11 +8,11 @@ public class Conexion {
         Statement sentencia = null;
         ResultSet resultado;
 
-        String HOST = "San-Valen-PC";
+        String HOST = "ASUSCT";
         String PORT = "1521";
         String SID = "xe";
-        String USER = "usuario";
-        String PASS = "password";
+        String USER = "sacastrot";
+        String PASS = "admin";
 
         System.out.println("Conectando a la base de datos...");
 
@@ -41,7 +41,7 @@ public class Conexion {
 
             System.out.println("Seleccionando...");
 
-            resultado = sentencia.executeQuery("SELECT codigo, nom, salario FROM empleado");
+            resultado = sentencia.executeQuery("select table_name from cols");
 
             // Se recorren las tuplas retornadas
             while (resultado.next()) {
