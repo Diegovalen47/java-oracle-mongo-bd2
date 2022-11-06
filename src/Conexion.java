@@ -8,6 +8,12 @@ public class Conexion {
         Statement sentencia = null;
         ResultSet resultado;
 
+        String HOST = "San-Valen-PC";
+        String PORT = "1521";
+        String SID = "xe";
+        String USER = "usuario";
+        String PASS = "password";
+
         System.out.println("Conectando a la base de datos...");
 
         try { // Cargar el driver
@@ -22,7 +28,7 @@ public class Conexion {
 
         try {
 
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@San-Valen-PC:1521:xe", "san_valen", "Valen76027");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@"+HOST+":"+PORT+":"+SID, USER, PASS);
             sentencia = conn.createStatement();
 
         } catch (Exception e) {
