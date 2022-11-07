@@ -157,7 +157,7 @@ public class Interfaz {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("interfaz");
+        JFrame frame = new JFrame("ERP - Gestion de Ventas");
         frame.setContentPane(new Interfaz().JPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
