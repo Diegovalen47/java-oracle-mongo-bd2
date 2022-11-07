@@ -6,9 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="1b1abc7e-5f30-4134-8fe6-5da155f75fb3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-oracle-mongo-bd2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-oracle-mongo-bd2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMain/App.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMain/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainCRUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainCRUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIMain/Interfaz.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/Interfaz.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIMain/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/Interfaz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIMain/crud/ShowProducto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/crud/ShowProducto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UIMain/crud/ShowVenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/crud/ShowVenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mongodbcrud/GeneroDAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mongodbcrud/GeneroDAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mongodbcrud/MarcaDAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mongodbcrud/MarcaDAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mongodbcrud/VenderoDAC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mongodbcrud/VendedorDAC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ClienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ConnectionOracle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ConnectionOracle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ProductoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/SucursalDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/SucursalDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/VendedorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/VendedorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/VentaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/VentaDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +56,10 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "210",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "630",
     "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "SQL-Insert-Statements.sql.groovy",
+    "database.data.extractors.current.id": "SQL-Insert-Statements.sql.groovy",
     "last_opened_file_path": "D:/Universidad/2022_02/3. Bases_II/Trabajos/java-oracle-mongo-bd2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,7 +89,7 @@
       <workItem from="1667693298656" duration="1450000" />
       <workItem from="1667697112693" duration="8252000" />
       <workItem from="1667706391960" duration="370000" />
-      <workItem from="1667840707992" duration="1137000" />
+      <workItem from="1667840707992" duration="17032000" />
     </task>
     <servers />
   </component>

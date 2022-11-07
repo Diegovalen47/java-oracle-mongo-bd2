@@ -51,11 +51,11 @@
         <properties>
           <model>
             <item value="--Seleccione--"/>
-            <item value="sucursal"/>
-            <item value="vendedor"/>
-            <item value="cliente"/>
-            <item value="producto"/>
-            <item value="venta"/>
+            <item value="Sucursal"/>
+            <item value="Vendedor"/>
+            <item value="Cliente"/>
+            <item value="Producto"/>
+            <item value="Venta"/>
           </model>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>

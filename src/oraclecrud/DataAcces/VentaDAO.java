@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class VentaDAO extends ConnectionOracle{
     private static final String FINDALL_VENTA = "SELECT * FROM venta";
-    public Collection<Venta> finAllSucursal() throws NoDataException, GlobalException{
+    public Collection<Venta> findAllVentas() throws NoDataException, GlobalException{
 
         try{
             Connect();

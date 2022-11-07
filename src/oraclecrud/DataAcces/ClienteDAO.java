@@ -10,7 +10,7 @@ public class ClienteDAO extends  ConnectionOracle{
     private static final String FINDALL_CLIENTE = "SELECT * FROM cliente";
     private static final String FINDONE_CLIENTE = "SELECT * FROM cliente WHERE codigo =";
 
-    public ArrayList<Cliente> finAllCliente() throws NoDataException, GlobalException{
+    public ArrayList<Cliente> findAllCliente() throws NoDataException, GlobalException{
 
         try{
             Connect();

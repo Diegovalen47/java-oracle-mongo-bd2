@@ -10,11 +10,11 @@ public class ConnectionOracle {
     public ConnectionOracle() {}
     protected void Connect() throws SQLException, ClassNotFoundException {
 
-        String HOST = "ASUSCT";
+        String HOST = "San-Valen-PC";
         String PORT = "1521";
         String SID = "xe";
-        String USER = "sacastrot";
-        String PASS = "admin";
+        String USER = "usuario";
+        String PASS = "password";
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         conn = DriverManager.getConnection("jdbc:oracle:thin:@" + HOST + ":" + PORT + ":" + SID, USER, PASS);

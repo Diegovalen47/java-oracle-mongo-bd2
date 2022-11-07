@@ -12,7 +12,6 @@ import oraclecrud.DataAcces.Statistics.GeneroDAO;
 import org.bson.Document;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class GeneroDAC extends ConnectionMongo {
     MongoDatabase database;
@@ -82,7 +81,8 @@ public class GeneroDAC extends ConnectionMongo {
         return doc1;
     }
 
-    public void finAll() throws MongoException, NoDataException {
+    public FindIterable<Document> finAll() throws MongoException, NoDataException {
+
         try{
             Connect();
         }catch (MongoException e){
@@ -93,20 +93,15 @@ public class GeneroDAC extends ConnectionMongo {
         // Create collection if doesn't exits
         MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
 
-        FindIterable<Document> genders  = collection.find();
+        int gendersCount = (int) collection.count();
 
-        for (Document d : genders) {
-            ArrayList<Document> list = new ArrayList<>((ArrayList<Document>) d.get("misVentas"));
-
-            System.out.println(d);
-            for (Document e : list) {
-                System.out.println(e.getString("nomsucursal"));
-            }
-
-//            System.out.println(d.getString("misVentas"));
-            System.out.println(d.getString("genero"));
+        if(gendersCount==0){
+            throw new NoDataException("No hay nada Pa");
         }
 
+        FindIterable<Document> genders  = collection.find();
+
+        return genders;
 
     }
 }

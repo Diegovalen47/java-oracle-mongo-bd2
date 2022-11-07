@@ -12,7 +12,7 @@ public class VendedorDAO extends ConnectionOracle{
     private static final String FINDALL_VENDEDOR = "SELECT * FROM vendedor";
     private static final String FINDONE_VENDEDOR = "SELECT * FROM vendedor WHERE codigo =";
 
-    public Collection<Vendedor> finAllSucursal() throws NoDataException, GlobalException{
+    public Collection<Vendedor> findAllVendedor() throws NoDataException, GlobalException{
 
         try{
             Connect();

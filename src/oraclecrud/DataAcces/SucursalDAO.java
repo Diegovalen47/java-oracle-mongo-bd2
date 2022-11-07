@@ -12,7 +12,7 @@ public class SucursalDAO extends ConnectionOracle {
     private static final String FINDALL_SUCURSAL = "SELECT * FROM sucursal";
     private static final String FINDONE_SUCURSAL = "SELECT * FROM sucursal WHERE codigo =";
 
-    public Collection<Sucursal> finAllSucursal() throws NoDataException, GlobalException{
+    public Collection<Sucursal> findAllSucursal() throws NoDataException, GlobalException{
 
         try{
             Connect();

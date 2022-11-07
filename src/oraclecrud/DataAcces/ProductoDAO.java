@@ -12,7 +12,7 @@ public class ProductoDAO extends ConnectionOracle{
     private static final String FINDALL_PRODUCTO = "SELECT * FROM producto";
     private static final String FINDONE_PRODUCTO = "SELECT * FROM producto WHERE codigo =";
 
-    public Collection<Producto> finAllProducto() throws NoDataException, GlobalException{
+    public Collection<Producto> findAllProducto() throws NoDataException, GlobalException{
 
         try{
             Connect();

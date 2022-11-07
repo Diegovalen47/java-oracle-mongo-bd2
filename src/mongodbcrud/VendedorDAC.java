@@ -1,6 +1,7 @@
 package mongodbcrud;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import models.Vendedor;
@@ -12,7 +13,7 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 
-public class VenderoDAC extends ConnectionMongo{
+public class VendedorDAC extends ConnectionMongo{
     MongoDatabase database;
     private final String DATA_BASE_NAME = "sales_statistics";
     private final String COLLECTION_NAME = "vendedores";
@@ -76,5 +77,29 @@ public class VenderoDAC extends ConnectionMongo{
         doc1.append(MISVENTAS,misVentas);
         doc1.append(GRANTOTAL, seller.getGrantotal());
         return doc1;
+    }
+
+    public FindIterable<Document> finAll() throws MongoException, NoDataException {
+
+        try{
+            Connect();
+        }catch (MongoException e){
+            System.out.println(e);
+        }
+        database = client.getDatabase(DATA_BASE_NAME);
+
+        // Create collection if doesn't exits
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+
+        int vendedoresCount = (int) collection.count();
+
+        if(vendedoresCount==0){
+            throw new NoDataException("No hay nada Pa");
+        }
+
+        FindIterable<Document> vendedores  = collection.find();
+
+        return vendedores;
+
     }
 }

@@ -1,6 +1,7 @@
 package mongodbcrud;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import models.Marca;
@@ -79,6 +80,29 @@ public class MarcaDAC extends ConnectionMongo {
         doc1.append(GRANTOTAL, m.getGranTotal());
 
         return doc1;
+
+    }
+    public FindIterable<Document> finAll() throws MongoException, NoDataException {
+
+        try{
+            Connect();
+        }catch (MongoException e){
+            System.out.println(e);
+        }
+        database = client.getDatabase(DATA_BASE_NAME);
+
+        // Create collection if doesn't exits
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+
+        int marksCount = (int) collection.count();
+
+        if(marksCount==0){
+            throw new NoDataException("No hay nada Pa");
+        }
+
+        FindIterable<Document> marcas  = collection.find();
+
+        return marcas;
 
     }
 
