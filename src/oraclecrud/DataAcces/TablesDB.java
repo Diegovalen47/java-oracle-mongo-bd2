@@ -20,7 +20,7 @@ public class TablesDB extends ConnectionOracle{
         }
 
         ResultSet result = null;
-        Statement query = null;
+        Statement query;
         ArrayList<String> tableNames = new ArrayList<>();
         try{
             query = conn.createStatement();

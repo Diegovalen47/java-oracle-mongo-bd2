@@ -5,6 +5,12 @@ public class VentaDetail {
     private final String tipoProd;
     private final int totalUni;
 
+    public VentaDetail(String nomSucursal, int totalUni) {
+        this.nomSucursal = nomSucursal;
+        this.tipoProd = "";
+        this.totalUni = totalUni;
+    }
+
     public VentaDetail(String nomSucursal, String tipoProd, int totalUni) {
         this.nomSucursal = nomSucursal;
         this.tipoProd = tipoProd;

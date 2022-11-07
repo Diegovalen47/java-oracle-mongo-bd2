@@ -5,13 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ClienteDAO extends  ConnectionOracle{
     private static final String FINDALL_CLIENTE = "SELECT * FROM cliente";
     private static final String FINDONE_CLIENTE = "SELECT * FROM cliente WHERE codigo =";
 
-    public Collection<Cliente> finAllCliente() throws NoDataException, GlobalException{
+    public ArrayList<Cliente> finAllCliente() throws NoDataException, GlobalException{
 
         try{
             Connect();
@@ -22,9 +21,9 @@ public class ClienteDAO extends  ConnectionOracle{
         }
 
         ResultSet result = null;
-        Statement query = null;
+        Statement query;
         ArrayList<Cliente> collection  = new ArrayList<>();
-        Cliente tmpCliente = null;
+        Cliente tmpCliente;
 
         try{
             query = conn.createStatement();

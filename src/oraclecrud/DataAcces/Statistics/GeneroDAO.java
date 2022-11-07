@@ -1,6 +1,6 @@
 package oraclecrud.DataAcces.Statistics;
 
-import models.Marca;
+import models.Genero;
 import models.VentaDetail;
 import oraclecrud.DataAcces.ConnectionOracle;
 import oraclecrud.DataAcces.GlobalException;
@@ -11,24 +11,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MarcaDAO extends ConnectionOracle {
-    private static final String FIND_STATISTICS_MARCA = "select s.NOMBRE, sum(v.NRO_UNIDADES) as totalUni ,p.marca, p.TIPO from PRODUCTO p join venta v on p.CODIGO = v.PRODUCTO join SUCURSAL s on  v.SUCURSAL = s.CODIGO group by s.nombre,p.TIPO, p.marca order by p.marca";
-    private static final String FIND_SIZE = "SELECT count(*) as rowCount from (" + FIND_STATISTICS_MARCA + ")";
-    public ArrayList<Marca> findStatistics() throws NoDataException, GlobalException {
+public class GeneroDAO extends ConnectionOracle {
+
+    private static final String FIND_STATISTICS_GENERO = "select c.genero, s.nombre, p.tipo, sum(nro_unidades) as TotalUni from cliente c join venta v on c.codigo = v.cliente join producto p on p.codigo = v.producto join sucursal s on s.codigo = v.sucursal group by c.genero, s.nombre, p.tipo order by c.genero";
+    private static final String FIND_SIZE = "SELECT count(*) as rowCount from (" + FIND_STATISTICS_GENERO + ")";
+
+    public ArrayList<Genero> findStatistics() throws GlobalException,NoDataException{
+
         try{
             Connect();
-        }catch (ClassNotFoundException e){
-            throw new GlobalException("No se pudo cargar el driver JDBC");
-        }catch (SQLException e ){
-            throw new GlobalException("No hay conexion con la base de datos");
+        }catch (ClassNotFoundException | SQLException e){
+            System.out.println(e);
         }
 
         ResultSet result = null;
         Statement query;
-        ArrayList<Marca> marcas = new ArrayList<>();
+        ArrayList<Genero> collectionGender = new ArrayList<>();
         VentaDetail tmpVentaDetail;
-        Marca tmpMarca;
-        String marcaName = "";
+        Genero tmpGender;
+        String genderName = "";
         int cont = 0;
 
         try{
@@ -38,7 +39,7 @@ public class MarcaDAO extends ConnectionOracle {
             result.next();
             int size = result.getInt("rowCount");
 
-            result = query.executeQuery(FIND_STATISTICS_MARCA);
+            result = query.executeQuery(FIND_STATISTICS_GENERO);
 
             ArrayList<VentaDetail> misVentas = new ArrayList<>();
 
@@ -50,10 +51,10 @@ public class MarcaDAO extends ConnectionOracle {
                             result.getInt("totalUni")
                     );
                     misVentas.add(tmpVentaDetail);
-                    marcaName = result.getString("marca");
+                    genderName = result.getString("genero");
                     cont += 1;
                 }else{
-                    if(result.getString("marca").equals(marcaName)){
+                    if(result.getString("genero").equals(genderName)){
                         tmpVentaDetail = new VentaDetail(
                                 result.getString("nombre"),
                                 result.getString("tipo"),
@@ -62,21 +63,21 @@ public class MarcaDAO extends ConnectionOracle {
                         misVentas.add(tmpVentaDetail);
                         cont += 1;
                         if (cont == size){
-                            tmpMarca = new Marca(marcaName,new ArrayList<>(misVentas));
-                            marcas.add(tmpMarca);
+                            tmpGender = new Genero(genderName,new ArrayList<>(misVentas));
+                            collectionGender.add(tmpGender);
                         }
                     }else{
-                        tmpMarca = new Marca(marcaName,new ArrayList<>(misVentas));
-                        marcas.add(tmpMarca);
+                        tmpGender = new Genero(genderName,new ArrayList<>(misVentas));
+                        collectionGender.add(tmpGender);
                         misVentas.clear();
 
                         tmpVentaDetail = new VentaDetail(
-                                result.getString("nombre"),
-                                result.getString("tipo"),
-                                result.getInt("totalUni")
+                            result.getString("nombre"),
+                            result.getString("tipo"),
+                            result.getInt("totalUni")
                         );
                         misVentas.add(tmpVentaDetail);
-                        marcaName = result.getString("marca");
+                        genderName = result.getString("genero");
                         cont += 1;
                     }
                 }
@@ -95,9 +96,10 @@ public class MarcaDAO extends ConnectionOracle {
                 throw new GlobalException("Estados invalidos");
             }
         }
-        if(marcas.size()==0){
+        if(collectionGender.size()==0){
             throw new NoDataException("No hay datos");
         }
-        return marcas;
+        return collectionGender;
     }
+
 }
