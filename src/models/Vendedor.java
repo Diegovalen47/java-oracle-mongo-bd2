@@ -3,6 +3,10 @@ package models;
 import java.util.ArrayList;
 
 public class Vendedor {
+    /*
+    * Clase vendedor que contiene los atributos de un vendedor
+    * y los métodos para obtener y modificar dichos atributos
+    * */
     private int codigo;
     private String nombre;
 
@@ -50,9 +54,9 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "Vendedor{" +
-                "codigo=" + codigo +
-                ", nombre='" + nombre + '\'' +
+        return "Vendedor {\n" +
+                "    codigo = " + codigo + "\n" +
+                "    nombre = " + nombre + "\n" +
                 '}';
     }
 }

@@ -1,3 +1,9 @@
+/*
+* Autores:
+*   - Diego Valentin Osorio Marin
+*   - Santiago Castro Tabares
+*   - Jan Michael Munoz Botero
+*/
 package UIMain;
 import UIMain.crud.*;
 import UIMain.statistic.ShowGenero;
@@ -25,6 +31,9 @@ public class Interfaz {
 
 
     public Interfaz() {
+    /*
+    * Este método se encarga de inicializar la interfaz
+    * */
         consultarDatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

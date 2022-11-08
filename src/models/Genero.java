@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Genero {
+    /*
+    * Esta clase representa a un genero
+    * donde se agrupan los detalles
+    * de venta agurpados en un genero
+    * */
     private String genero;
     private ArrayList<VentaDetail> ventaDetail;
     private int granTotal;
@@ -32,6 +37,10 @@ public class Genero {
     }
 
     public void addVentaDetail( VentaDetail ventaDetail) {
+    /*
+    * Metodo para agregar un detalle de venta
+    * incrementando el gran total de venta de los generos
+    * */
         this.ventaDetail.add(ventaDetail);
         this.granTotal += ventaDetail.getTotalUni();
     }

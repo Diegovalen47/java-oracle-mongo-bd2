@@ -1,6 +1,14 @@
 package models;
 
 public class Venta {
+    /*
+    * Esta clase representa una venta
+    * dondes se agrupan la sucursal donde se realizo
+    * El vendedor que la realizo
+    * El cliente que la realizo
+    * El producto que se vendio
+    * Las unidades del productos vendidos
+    * */
     private final int codigo;
     private final Sucursal sucursal;
     private final Vendedor vendedor;
@@ -43,17 +51,28 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "\nVenta{" +
-                "codigo=" + codigo + "\n"+
-                "sucursal{" + sucursal.getCodigo() +
-                "," + sucursal.getNombre() + "}\n" +
-                "vendedor{" + vendedor.getCodigo() +
-                "," + vendedor.getNombre() + "}\n" +
-                "cliente{" + cliente.getCodigo() +
-                "," + cliente.getNombre() + "}\n" +
-                "producto{" + producto.getCodigo() +
-                "," + producto.getNombre() + "}\n" +
-                "nro_unidades=" + nro_unidades +
+        return "Venta {\n" +
+                "    codigo = " + codigo + "\n" +
+                "    sucursal {\n" +
+                "        codigo = " + sucursal.getCodigo() + "\n" +
+                "        nombre =" + sucursal.getNombre() + "\n" +
+                "    }\n" +
+                "    vendedor {\n" +
+                "        codigo = " + vendedor.getCodigo() + "\n" +
+                "        nombre =" + vendedor.getNombre() + "\n" +
+                "    }\n" +
+                "    cliente {\n" +
+                "        codigo = " + cliente.getCodigo() + "\n" +
+                "        nombre = " + cliente.getNombre() + "\n" +
+                "        genero = " + cliente.getGenero() + "\n" +
+                "    }\n" +
+                "    producto {\n" +
+                "        codigo = " + producto.getCodigo() + "\n" +
+                "        nombre = " + producto.getNombre() + "\n" +
+                "        tipo = " + producto.getTipo() + "\n" +
+                "        marca = " + producto.getMarca() + "\n" +
+                "    }\n" +
+                "    numero unidades =" + nro_unidades +
                 "}\n";
     }
 }

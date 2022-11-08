@@ -1,6 +1,10 @@
 package models;
 
 public class Sucursal {
+    /*
+    * Esta clase representa a una sucursal
+    * con su codigo y nombre
+    * */
     private final int codigo;
     private final String nombre;
 
@@ -19,9 +23,9 @@ public class Sucursal {
 
     @Override
     public String toString() {
-        return "Sucursal{" +
-                "codigo=" + codigo +
-                ", nombre='" + nombre + '\'' +
+        return "Sucursal {\n" +
+                "    codigo = " + codigo + "\n" +
+                "    nombre = " + nombre + "\n" +
                 '}';
     }
 }

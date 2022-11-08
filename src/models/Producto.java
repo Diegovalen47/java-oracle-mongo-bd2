@@ -1,6 +1,10 @@
 package models;
 
 public class Producto {
+    /*
+    * Clase que representa a un producto
+    * con su código, nombre, tipo y marca
+    * */
     private final int codigo;
     private final String nombre;
     private final String tipo;
@@ -31,11 +35,11 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "codigo=" + codigo +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", marca='" + marca + '\'' +
+        return "Producto {\n" +
+                "    codigo = " + codigo + "\n" +
+                "    nombre = " + nombre + "\n" +
+                "    tipo = " + tipo + "\n" +
+                "    marca = " + marca + "\n" +
                 '}';
     }
 }

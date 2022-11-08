@@ -26,6 +26,10 @@ public class GeneroDAC extends ConnectionMongo {
     private final GeneroDAO dao = new GeneroDAO();
 
     public void saveStatistics() throws MongoException, NoDataException {
+        /*
+        * este metodo se encarga de guardar las estadisticas
+        * agupando por genero en la base de datos de MongoDB
+        * */
 
         try {
             Connect();
@@ -58,7 +62,11 @@ public class GeneroDAC extends ConnectionMongo {
     }
 
     private Document getDocument(Genero genero) {
-
+        /*
+        * Este metodo se encarga de convertir un objeto de tipo Genero en un documento de tipo Document
+        * @param genero: objeto de tipo Genero
+        *
+        * */
         String SUCURSAL = "nomsucursal";
         String TIPOPRODUCTO = "TipoProd";
         String TOTALUN = "TotalUni";
@@ -82,7 +90,10 @@ public class GeneroDAC extends ConnectionMongo {
     }
 
     public FindIterable<Document> finAll() throws MongoException, NoDataException {
-
+        /*
+        * Metodo encargado de retornar todos los documetos
+        * de la coleccion genero en un iterable
+        * */
         try{
             Connect();
         }catch (MongoException e){

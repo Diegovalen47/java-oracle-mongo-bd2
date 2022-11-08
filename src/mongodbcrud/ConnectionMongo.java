@@ -5,6 +5,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.MongoException;
 
 public class ConnectionMongo {
+    /*
+    * Clase para realizar la conexion a la base de datos MongoDB
+    * */
     MongoClient client = null;
     public ConnectionMongo() {
     }

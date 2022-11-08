@@ -1,6 +1,13 @@
 package models;
 
 public class VentaDetail {
+    /*
+    * Esta clase se encarga de representar el detalle de una venta
+    * con el fin de mostar de una venta, la sucursan donde se realizo
+    * el tipo de producto y el total de unidades,
+    * La finalidad de este modelo es mantener la estructura de misVentas que
+    * sera agregada en la base de datos MongoDB
+    * */
     private final  String nomSucursal;
     private final String tipoProd;
     private final int totalUni;

@@ -33,7 +33,6 @@ public class GeneroDAO extends ConnectionOracle {
         try{
             query = conn.createStatement();
             result = query.executeQuery(FIND_STATISTICS_GENERO);
-
             while (result.next()){
                 generoTxt  = result.getString("genero") == null ? "Unknown" : result.getString("genero");
                 tmpGender = searchGender(generoTxt);
@@ -43,7 +42,6 @@ public class GeneroDAO extends ConnectionOracle {
                         result.getInt("TotalUni")
                 );
                 tmpGender.addVentaDetail(tmpVentaDetail);
-
             }
 
         }catch (SQLException e){

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Marca {
+    /*
+    * Esta clase representa a una marca
+    * donde se agrupan los detalles
+    * de venta agurpados en una marca
+    * */
     private String nombre;
     private ArrayList<VentaDetail> ventaDetail;
     private int granTotal;
@@ -31,6 +36,10 @@ public class Marca {
     }
 
     public void addVentaDetail(VentaDetail ventaDetail) {
+    /*
+    * Metodo para agregar un detalle de venta
+    * incrementando el gran total de venta de las marcas
+    * */
         this.ventaDetail.add(ventaDetail);
         this.granTotal += ventaDetail.getTotalUni();
     }
