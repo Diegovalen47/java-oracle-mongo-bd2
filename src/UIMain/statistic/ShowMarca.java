@@ -60,7 +60,7 @@ public class ShowMarca {
 
         }
 
-        finalText = finalText + "Gran Gran Total: " + String.valueOf(granGranTotal) + "\n";
+        finalText = finalText + "Super Gran Total: " + String.valueOf(granGranTotal) + "\n";
 
         return finalText;
     }

@@ -32,6 +32,43 @@ C:\oraclexe\app\oracle\product\11.2.0\server\network\ADMIN
 
 incluir al project structure, el jar que esta en la carpeta lib
 
+-- Colección marcas
+select p.marca, s.nombre, p.tipo, sum(nro_unidades) as TotalUni
+from
+venta v join producto p on p.codigo = v.producto
+join sucursal s on s.codigo = v.sucursal
+group by p.marca, s.nombre, p.tipo order by p.marca;
+
+-- Colección Géneros
+select c.genero, s.nombre, p.tipo, sum(nro_unidades) as TotalUni
+from
+cliente c join venta v on c.codigo = v.cliente
+join producto p on p.codigo = v.producto
+join sucursal s on s.codigo = v.sucursal
+group by c.genero, s.nombre, p.tipo order by c.genero;
+
+-- Colección Vendedores
+select vd.codigo, vd.nombre, s.nombre as sucursal, sum(nro_unidades) as TotalUni
+from
+vendedor vd join venta v on v.vendedor = vd.codigo
+join sucursal s on v.sucursal = s.codigo
+group by vd.codigo, vd.nombre, s.nombre order by vd.codigo;
+
+
+CREATE OR REPLACE TRIGGER triggerInsertCliente
+BEFORE INSERT
+ON CLIENTE
+FOR EACH ROW
+begin
+  if (:NEW.GENERO IS NULL) then
+    :NEW.GENERO := 'Unknown';
+  end if;
+  exception
+  when OTHERS then
+    DBMS_OUTPUT.PUT_LINE(SQLERRM||' '||sqlcode);
+end;
+/
+COMMIT;
 
 Datos de prueba
 
@@ -70,24 +107,38 @@ INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades
 
 COMMIT;
 
--- Colección marcas
-select p.marca, s.nombre, p.tipo, sum(nro_unidades) as TotalUni
-from
-venta v join producto p on p.codigo = v.producto
-join sucursal s on s.codigo = v.sucursal
-group by p.marca, s.nombre, p.tipo order by p.marca;
+-- Caso de prueba 2
 
--- Colección Géneros
-select c.genero, s.nombre, p.tipo, sum(nro_unidades) as TotalUni
-from
-cliente c join venta v on c.codigo = v.cliente
-join producto p on p.codigo = v.producto
-join sucursal s on s.codigo = v.sucursal
-group by c.genero, s.nombre, p.tipo order by c.genero;
+INSERT INTO sucursal (codigo, nombre) VALUES (1, 'Exito Robledo');
+INSERT INTO sucursal (codigo, nombre) VALUES (2, 'Exito Envigado');
+INSERT INTO sucursal (codigo, nombre) VALUES (3, 'Jumbo');
+INSERT INTO sucursal (codigo, nombre) VALUES (4, 'Exito San Antonio');
 
--- Colección Vendedores
-select vd.codigo, vd.nombre, s.nombre as sucursal, sum(nro_unidades) as TotalUni
-from
-vendedor vd join venta v on v.vendedor = vd.codigo
-join sucursal s on v.sucursal = s.codigo
-group by vd.codigo, vd.nombre, s.nombre order by vd.codigo;
+INSERT INTO vendedor (codigo, nombre) VALUES (1, 'Ellen Barazzo');
+INSERT INTO vendedor (codigo, nombre) VALUES (2, 'Chucky Damian');
+
+INSERT INTO cliente (codigo, nombre, genero) VALUES (1, 'Santiago', 'm');
+INSERT INTO cliente (codigo, nombre, genero) VALUES (2, 'Manuela', NULL);
+INSERT INTO cliente (codigo, nombre, genero) VALUES (3, 'Camila', NULL);
+INSERT INTO cliente (codigo, nombre, genero) VALUES (4, 'Michael', 'm');
+INSERT INTO cliente (codigo, nombre, genero) VALUES (5, 'Valentin', 'm');
+
+INSERT INTO producto (codigo, nombre, tipo, marca) VALUES (1, 'Salchichas', 'Carnicos', 'Colanta');
+INSERT INTO producto (codigo, nombre, tipo, marca) VALUES (2, 'Chorizos', 'Carnicos', 'Colanta');
+INSERT INTO producto (codigo, nombre, tipo, marca) VALUES (3, 'Queso', 'Lacteos', 'Colanta');
+INSERT INTO producto (codigo, nombre, tipo, marca) VALUES (4, 'Quesito', 'Lacteos', 'Alpina');
+INSERT INTO producto (codigo, nombre, tipo, marca) VALUES (5, 'Cerdo', 'Carnicos', 'Alpina');
+
+-- Exito Robledo, Ellen Barazzo, Valentin, (4, Quesito), (50 unidades)
+-- Exito Robledo, Chucky Damian, Valentin, (5, Cerdo), (20 unidades)
+-- Jumbo, Ellen Barazzo, Michael, (2, Chorizos), (5 unidades)
+-- Jumbo, Ellen Barazzo, Santiago, (1, Salchichas), (30 unidades)
+-- Exito San Antonio, Chucky Damian, Santiago, (1, Salchichas), (70 unidades)
+-- Exito San Antonio, Ellen Barazzo, Camila, (4, Quesito), (1 unidades)
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (1, 1, 1, 5, 4, 50);
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (2, 1, 2, 5, 5, 20);
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (3, 3, 1, 4, 2, 5);
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (4, 3, 1, 1, 1, 30);
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (5, 4, 2, 1, 1, 70);
+INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (6, 4, 1, 3, 4, 1);
+

@@ -32,7 +32,7 @@ public class ClienteDAO extends  ConnectionOracle{
                 tmpCliente = new Cliente(
                         result.getInt("codigo"),
                         result.getString("nombre"),
-                        result.getString("genero")
+                        (result.getString("genero") == null) ? "Unknown" : result.getString("genero")
                 );
                 collection.add(tmpCliente);
             }
