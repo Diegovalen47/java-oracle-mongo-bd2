@@ -43,7 +43,10 @@ public class GeneroDAO extends ConnectionOracle {
 
             ArrayList<VentaDetail> misVentas = new ArrayList<>();
 
+            String genderResult = "";
+
             while (result.next()){
+
                 if(cont == 0){
                     tmpVentaDetail = new VentaDetail(
                             result.getString("nombre"),
@@ -51,10 +54,13 @@ public class GeneroDAO extends ConnectionOracle {
                             result.getInt("totalUni")
                     );
                     misVentas.add(tmpVentaDetail);
-                    genderName = result.getString("genero");
+                    genderName = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
                     cont += 1;
                 }else{
-                    if(result.getString("genero").equals(genderName)){
+
+                    genderResult = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
+
+                    if(genderResult.equals(genderName)){
                         tmpVentaDetail = new VentaDetail(
                                 result.getString("nombre"),
                                 result.getString("tipo"),
@@ -77,8 +83,12 @@ public class GeneroDAO extends ConnectionOracle {
                             result.getInt("totalUni")
                         );
                         misVentas.add(tmpVentaDetail);
-                        genderName = result.getString("genero");
+                        genderName = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
                         cont += 1;
+                        if (cont == size){
+                            tmpGender = new Genero(genderName, new ArrayList<>(misVentas));
+                            collectionGender.add(tmpGender);
+                        }
                     }
                 }
             }

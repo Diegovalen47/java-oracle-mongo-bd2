@@ -45,9 +45,9 @@
     <schema id="14" parent="1" name="PUBLIC">
       <CreatedTimestamp>2014-05-29.08:10:42</CreatedTimestamp>
       <DbLinksHash>538364687</DbLinksHash>
-      <IntrospectionL1Timestamp>2022-11-07.07:44:30</IntrospectionL1Timestamp>
-      <IntrospectionL2Timestamp>2022-11-07.07:44:30</IntrospectionL2Timestamp>
-      <IntrospectionL3Timestamp>2022-11-07.07:44:30</IntrospectionL3Timestamp>
+      <IntrospectionL1Timestamp>2022-11-08.03:23:12</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-11-08.03:23:12</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-11-08.03:23:12</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
       <ModifiedTimestamp>2014-05-29.08:31:03</ModifiedTimestamp>
       <ObjectId>1</ObjectId>
@@ -64,11 +64,11 @@
     <schema id="18" parent="1" name="USUARIO">
       <CreatedTimestamp>2022-11-05.14:49:14</CreatedTimestamp>
       <Current>1</Current>
-      <IntrospectionL1Timestamp>2022-11-07.07:44:30</IntrospectionL1Timestamp>
-      <IntrospectionL2Timestamp>2022-11-07.07:44:30</IntrospectionL2Timestamp>
-      <IntrospectionL3Timestamp>2022-11-07.07:44:30</IntrospectionL3Timestamp>
+      <IntrospectionL1Timestamp>2022-11-08.03:23:12</IntrospectionL1Timestamp>
+      <IntrospectionL2Timestamp>2022-11-08.03:23:12</IntrospectionL2Timestamp>
+      <IntrospectionL3Timestamp>2022-11-08.03:23:12</IntrospectionL3Timestamp>
       <IntrospectionVersion>200820</IntrospectionVersion>
-      <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
+      <ModifiedTimestamp>2022-11-08.03:21:43</ModifiedTimestamp>
       <ObjectId>49</ObjectId>
     </schema>
     <schema id="19" parent="1" name="XDB">
@@ -32042,10 +32042,10 @@
       <TargetObjectParentName>SYS</TargetObjectParentName>
     </synonym>
     <table id="4021" parent="18" name="CLIENTE">
-      <CreatedTimestamp>2022-11-07.07:41:35</CreatedTimestamp>
+      <CreatedTimestamp>2022-11-08.03:00:12</CreatedTimestamp>
       <DetailsLevel>3</DetailsLevel>
-      <ModifiedTimestamp>2022-11-07.07:41:35</ModifiedTimestamp>
-      <ObjectId>23020</ObjectId>
+      <ModifiedTimestamp>2022-11-08.03:21:43</ModifiedTimestamp>
+      <ObjectId>23108</ObjectId>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="4022" parent="18" name="EMPLEADO">
@@ -32079,7 +32079,7 @@
     <table id="4026" parent="18" name="VENTA">
       <CreatedTimestamp>2022-11-07.07:41:45</CreatedTimestamp>
       <DetailsLevel>3</DetailsLevel>
-      <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
+      <ModifiedTimestamp>2022-11-08.02:58:25</ModifiedTimestamp>
       <ObjectId>23024</ObjectId>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
@@ -32136,10 +32136,10 @@
       <Position>4</Position>
       <UserSize>12672</UserSize>
     </data-file>
-    <check id="4032" parent="4021" name="SYS_C007563">
+    <check id="4032" parent="4021" name="SYS_C007583">
       <ColNames>GENERO</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
-      <ModifiedTimestamp>2022-11-07.07:41:35</ModifiedTimestamp>
+      <ModifiedTimestamp>2022-11-08.03:00:12</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <Predicate>genero IN (&apos;m &apos;, &apos;f &apos;)</Predicate>
     </check>
@@ -32157,21 +32157,21 @@
       <DataType>CHAR(1 byte)|0s</DataType>
       <Position>3</Position>
     </column>
-    <index id="4036" parent="4021" name="SYS_C007564">
+    <index id="4036" parent="4021" name="SYS_C007584">
       <ColNames>CODIGO</ColNames>
-      <CreatedTimestamp>2022-11-07.07:41:35</CreatedTimestamp>
-      <ModifiedTimestamp>2022-11-07.07:41:35</ModifiedTimestamp>
+      <CreatedTimestamp>2022-11-08.03:00:12</CreatedTimestamp>
+      <ModifiedTimestamp>2022-11-08.03:00:12</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>23021</ObjectId>
+      <ObjectId>23109</ObjectId>
       <Unique>1</Unique>
       <TablespaceName>SYSTEM</TablespaceName>
     </index>
-    <key id="4037" parent="4021" name="SYS_C007564">
+    <key id="4037" parent="4021" name="SYS_C007584">
       <InitiallyDeferred>1</InitiallyDeferred>
-      <ModifiedTimestamp>2022-11-07.07:41:35</ModifiedTimestamp>
+      <ModifiedTimestamp>2022-11-08.03:00:12</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>SYS_C007564</UnderlyingIndexName>
+      <UnderlyingIndexName>SYS_C007584</UnderlyingIndexName>
     </key>
     <column id="4038" parent="4022" name="CODIGO">
       <DataType>NUMBER(3 digit)|0s</DataType>
@@ -32360,15 +32360,7 @@
       <RefKeyName>SYS_C007561</RefKeyName>
       <RefTableName>VENDEDOR</RefTableName>
     </foreign-key>
-    <foreign-key id="4068" parent="4026" name="SYS_C007578">
-      <ColNames>CLIENTE</ColNames>
-      <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
-      <NameSurrogate>1</NameSurrogate>
-      <OnDelete>restrict</OnDelete>
-      <RefKeyName>SYS_C007564</RefKeyName>
-      <RefTableName>CLIENTE</RefTableName>
-    </foreign-key>
-    <foreign-key id="4069" parent="4026" name="SYS_C007579">
+    <foreign-key id="4068" parent="4026" name="SYS_C007579">
       <ColNames>PRODUCTO</ColNames>
       <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -32376,7 +32368,7 @@
       <RefKeyName>SYS_C007568</RefKeyName>
       <RefTableName>PRODUCTO</RefTableName>
     </foreign-key>
-    <index id="4070" parent="4026" name="SYS_C007575">
+    <index id="4069" parent="4026" name="SYS_C007575">
       <ColNames>CODVENTA</ColNames>
       <CreatedTimestamp>2022-11-07.07:41:45</CreatedTimestamp>
       <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
@@ -32385,7 +32377,7 @@
       <Unique>1</Unique>
       <TablespaceName>SYSTEM</TablespaceName>
     </index>
-    <key id="4071" parent="4026" name="SYS_C007575">
+    <key id="4070" parent="4026" name="SYS_C007575">
       <InitiallyDeferred>1</InitiallyDeferred>
       <ModifiedTimestamp>2022-11-07.07:41:45</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>

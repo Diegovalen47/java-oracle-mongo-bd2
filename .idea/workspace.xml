@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3212655-5999-4a6d-a254-50016765ec48" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/868d5ea7-56fc-4cf5-895d-b2c94d65c105.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/868d5ea7-56fc-4cf5-895d-b2c94d65c105.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UIMain/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/Interfaz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMain/statistic/ShowGenero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/statistic/ShowGenero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMain/statistic/ShowMarca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/statistic/ShowMarca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UIMain/statistic/ShowVendedorStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UIMain/statistic/ShowVendedorStat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/ClienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oraclecrud/DataAcces/Statistics/GeneroDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/oraclecrud/DataAcces/Statistics/GeneroDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +71,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1b1abc7e-5f30-4134-8fe6-5da155f75fb3" name="Changes" comment="" />
+      <changelist id="c3212655-5999-4a6d-a254-50016765ec48" name="Changes" comment="" />
       <created>1667693297172</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -81,6 +81,9 @@
       <workItem from="1667706391960" duration="370000" />
       <workItem from="1667840707992" duration="17032000" />
       <workItem from="1667858817766" duration="1432000" />
+      <workItem from="1667873346862" duration="454000" />
+      <workItem from="1667875666495" duration="1249000" />
+      <workItem from="1667909781586" duration="4894000" />
     </task>
     <servers />
   </component>
@@ -97,5 +100,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/oraclecrud/DataAcces/Statistics/GeneroDAO.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MainCRUD.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
