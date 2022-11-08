@@ -21,6 +21,7 @@ public class Interfaz {
     private JTextArea textArea1;
     private javax.swing.JPanel JPanel;
     private JComboBox comboBox2;
+    private JButton limpiarConsultaButton;
 
 
     public Interfaz() {
@@ -140,17 +141,23 @@ public class Interfaz {
 
             }
         });
-        comboBox1.addMouseListener(new MouseAdapter() {
+
+        comboBox1.addActionListener(new ActionListener() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
+            public void actionPerformed(ActionEvent e) {
                 textArea1.setText("");
             }
         });
-        comboBox2.addMouseListener(new MouseAdapter() {
+
+        comboBox2.addActionListener(new ActionListener() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
+            public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
+            }
+        });
+        limpiarConsultaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 textArea1.setText("");
             }
         });
