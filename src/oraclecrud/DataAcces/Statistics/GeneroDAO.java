@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GeneroDAO extends ConnectionOracle {
 
     private static final String FIND_STATISTICS_GENERO = "select c.genero, s.nombre, p.tipo, sum(nro_unidades) as TotalUni from cliente c join venta v on c.codigo = v.cliente join producto p on p.codigo = v.producto join sucursal s on s.codigo = v.sucursal group by c.genero, s.nombre, p.tipo order by c.genero";
-    private static final String FIND_SIZE = "SELECT count(*) as rowCount from (" + FIND_STATISTICS_GENERO + ")";
+    ArrayList<Genero> collectionGender = new ArrayList<>();
 
     public ArrayList<Genero> findStatistics() throws GlobalException,NoDataException{
 
@@ -26,71 +26,24 @@ public class GeneroDAO extends ConnectionOracle {
 
         ResultSet result = null;
         Statement query;
-        ArrayList<Genero> collectionGender = new ArrayList<>();
         VentaDetail tmpVentaDetail;
         Genero tmpGender;
-        String genderName = "";
-        int cont = 0;
+        String generoTxt;
 
         try{
             query = conn.createStatement();
-
-            result = query.executeQuery(FIND_SIZE);
-            result.next();
-            int size = result.getInt("rowCount");
-
             result = query.executeQuery(FIND_STATISTICS_GENERO);
 
-            ArrayList<VentaDetail> misVentas = new ArrayList<>();
-
-            String genderResult = "";
-
             while (result.next()){
+                generoTxt  = result.getString("genero") == null ? "Unknown" : result.getString("genero");
+                tmpGender = searchGender(generoTxt);
+                tmpVentaDetail = new VentaDetail(
+                        result.getString("nombre"),
+                        result.getString("tipo"),
+                        result.getInt("TotalUni")
+                );
+                tmpGender.addVentaDetail(tmpVentaDetail);
 
-                if(cont == 0){
-                    tmpVentaDetail = new VentaDetail(
-                            result.getString("nombre"),
-                            result.getString("tipo"),
-                            result.getInt("totalUni")
-                    );
-                    misVentas.add(tmpVentaDetail);
-                    genderName = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
-                    cont += 1;
-                }else{
-
-                    genderResult = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
-
-                    if(genderResult.equals(genderName)){
-                        tmpVentaDetail = new VentaDetail(
-                                result.getString("nombre"),
-                                result.getString("tipo"),
-                                result.getInt("totalUni")
-                        );
-                        misVentas.add(tmpVentaDetail);
-                        cont += 1;
-                        if (cont == size){
-                            tmpGender = new Genero(genderName,new ArrayList<>(misVentas));
-                            collectionGender.add(tmpGender);
-                        }
-                    }else{
-                        tmpGender = new Genero(genderName,new ArrayList<>(misVentas));
-                        collectionGender.add(tmpGender);
-                        misVentas.clear();
-
-                        tmpVentaDetail = new VentaDetail(
-                            result.getString("nombre"),
-                            result.getString("tipo"),
-                            result.getInt("totalUni")
-                        );
-                        misVentas.add(tmpVentaDetail);
-                        genderName = (result.getString("genero") == null) ? "Unknown" : result.getString("genero");
-                        cont += 1;
-                        if (cont == size){
-                            tmpGender = new Genero(genderName, new ArrayList<>(misVentas));
-                            collectionGender.add(tmpGender);
-                        }
-                    }
-                }
             }
 
         }catch (SQLException e){
@@ -110,6 +63,18 @@ public class GeneroDAO extends ConnectionOracle {
             throw new NoDataException("No hay datos");
         }
         return collectionGender;
+    }
+
+    private Genero searchGender(String genderTxt){
+        Genero tmpGender = new Genero();
+        for (Genero g: collectionGender){
+            if(g.getGenero().equals(genderTxt)){
+                return g;
+            }
+        }
+        tmpGender.setGenero(genderTxt);
+        collectionGender.add(tmpGender);
+        return tmpGender;
     }
 
 }

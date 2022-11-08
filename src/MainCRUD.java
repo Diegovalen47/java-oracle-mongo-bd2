@@ -1,9 +1,5 @@
-import com.mongodb.MongoException;
-import mongodbcrud.GeneroDAC;
-import mongodbcrud.MarcaDAC;
-import mongodbcrud.VendedorDAC;
 import oraclecrud.DataAcces.*;
-import oraclecrud.DataAcces.Statistics.GeneroDAO;
+import oraclecrud.DataAcces.Statistics.MarcaDAO;
 
 public class MainCRUD {
     public static void main(String[] args) {
@@ -27,17 +23,9 @@ public class MainCRUD {
 //        }
 //
         try{
-
-            MarcaDAC tmp = new MarcaDAC();
-            tmp.saveStatistics();
-
-            VendedorDAC tmp2 = new VendedorDAC();
-            tmp2.saveStatistics();
-
-            GeneroDAC tmp3 = new GeneroDAC();
-            tmp3.saveStatistics();
-
-        }catch (MongoException e){
+            MarcaDAO tmp = new MarcaDAO();
+            System.out.println(tmp.findStatistics());
+        }catch (GlobalException e){
             System.out.println(e);
         }catch (NoDataException e){
             System.out.println(e);

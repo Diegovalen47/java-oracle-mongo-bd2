@@ -66,7 +66,7 @@ public class GeneroDAC extends ConnectionMongo {
         ArrayList<Document> misVentas = new ArrayList<>();
         Document doc1 = new Document();
 
-        doc1.append(NOMBRE_GENERO,genero.getNombre());
+        doc1.append(NOMBRE_GENERO,genero.getGenero());
 
         for(VentaDetail vd : genero.getVentaDetail()){
             Document doc2 = new Document();

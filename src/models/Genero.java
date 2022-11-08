@@ -4,27 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Genero {
-    private final String nombre;
-    private final ArrayList<VentaDetail> ventaDetail;
-    private final int granTotal;
+    private String genero;
+    private ArrayList<VentaDetail> ventaDetail;
+    private int granTotal;
 
-    public Genero(String nombre, ArrayList<VentaDetail> ventaDetail) {
-        this.nombre = nombre;
-        this.ventaDetail = ventaDetail;
-        this.granTotal = CalculatedGranTotal();
-    }
-
-    private int CalculatedGranTotal() {
-        int granTotal = 0;
-        for(VentaDetail temp : ventaDetail){
-            granTotal += temp.getTotalUni();
-        }
-        return granTotal;
+    public Genero() {
+        this.genero = "";
+        this.granTotal = 0;
+        this.ventaDetail = new ArrayList<>();
     }
 
 
-    public String getNombre() {
-        return nombre;
+    public String getGenero() {
+        return genero;
     }
 
     public Collection<VentaDetail> getVentaDetail() {
@@ -35,10 +27,19 @@ public class Genero {
         return granTotal;
     }
 
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void addVentaDetail( VentaDetail ventaDetail) {
+        this.ventaDetail.add(ventaDetail);
+        this.granTotal += ventaDetail.getTotalUni();
+    }
+
     @Override
     public String toString() {
         return "Genero{" +
-                "nombre='" + nombre + '\'' +
+                "nombre='" + genero + '\'' +
                 ", ventaDetail=" + ventaDetail +
                 ", granTotal=" + granTotal +
                 '}';

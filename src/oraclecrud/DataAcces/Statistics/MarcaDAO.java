@@ -12,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MarcaDAO extends ConnectionOracle {
-    private static final String FIND_STATISTICS_MARCA = "select s.NOMBRE, sum(v.NRO_UNIDADES) as totalUni ,p.marca, p.TIPO from PRODUCTO p join venta v on p.CODIGO = v.PRODUCTO join SUCURSAL s on  v.SUCURSAL = s.CODIGO group by s.nombre,p.TIPO, p.marca order by p.marca";
-    private static final String FIND_SIZE = "SELECT count(*) as rowCount from (" + FIND_STATISTICS_MARCA + ")";
+    private static final String FIND_STATISTICS_MARCA = "select s.NOMBRE as sucursal, sum(v.NRO_UNIDADES) as totalUni ,p.marca, p.TIPO from PRODUCTO p join venta v on p.CODIGO = v.PRODUCTO join SUCURSAL s on  v.SUCURSAL = s.CODIGO group by s.nombre,p.TIPO, p.marca order by p.marca";
+    private ArrayList<Marca> collectionMarca = new ArrayList<>();
     public ArrayList<Marca> findStatistics() throws NoDataException, GlobalException {
         try{
             Connect();
@@ -25,61 +25,24 @@ public class MarcaDAO extends ConnectionOracle {
 
         ResultSet result = null;
         Statement query;
-        ArrayList<Marca> marcas = new ArrayList<>();
         VentaDetail tmpVentaDetail;
         Marca tmpMarca;
-        String marcaName = "";
-        int cont = 0;
+        String marcaName;
 
         try{
             query = conn.createStatement();
-
-            result = query.executeQuery(FIND_SIZE);
-            result.next();
-            int size = result.getInt("rowCount");
-
             result = query.executeQuery(FIND_STATISTICS_MARCA);
 
-            ArrayList<VentaDetail> misVentas = new ArrayList<>();
-
             while (result.next()){
-                if(cont == 0){
-                    tmpVentaDetail = new VentaDetail(
-                            result.getString("nombre"),
-                            result.getString("tipo"),
-                            result.getInt("totalUni")
-                    );
-                    misVentas.add(tmpVentaDetail);
-                    marcaName = result.getString("marca");
-                    cont += 1;
-                }else{
-                    if(result.getString("marca").equals(marcaName)){
-                        tmpVentaDetail = new VentaDetail(
-                                result.getString("nombre"),
-                                result.getString("tipo"),
-                                result.getInt("totalUni")
-                        );
-                        misVentas.add(tmpVentaDetail);
-                        cont += 1;
-                        if (cont == size){
-                            tmpMarca = new Marca(marcaName,new ArrayList<>(misVentas));
-                            marcas.add(tmpMarca);
-                        }
-                    }else{
-                        tmpMarca = new Marca(marcaName,new ArrayList<>(misVentas));
-                        marcas.add(tmpMarca);
-                        misVentas.clear();
+                marcaName  = result.getString("marca");
+                tmpMarca = searchGender(marcaName);
+                tmpVentaDetail = new VentaDetail(
+                        result.getString("sucursal"),
+                        result.getString("tipo"),
+                        result.getInt("TotalUni")
+                );
+                tmpMarca.addVentaDetail(tmpVentaDetail);
 
-                        tmpVentaDetail = new VentaDetail(
-                                result.getString("nombre"),
-                                result.getString("tipo"),
-                                result.getInt("totalUni")
-                        );
-                        misVentas.add(tmpVentaDetail);
-                        marcaName = result.getString("marca");
-                        cont += 1;
-                    }
-                }
             }
 
         }catch (SQLException e){
@@ -95,9 +58,20 @@ public class MarcaDAO extends ConnectionOracle {
                 throw new GlobalException("Estados invalidos");
             }
         }
-        if(marcas.size()==0){
+        if(collectionMarca.size()==0){
             throw new NoDataException("No hay datos");
         }
-        return marcas;
+        return collectionMarca;
+    }
+    private Marca searchGender(String marcaTxt){
+        Marca tmpMarca = new Marca();
+        for (Marca m: collectionMarca){
+            if(m.getNombre().equals(marcaTxt)){
+                return m;
+            }
+        }
+        tmpMarca.setNombre(marcaTxt);
+        collectionMarca.add(tmpMarca);
+        return tmpMarca;
     }
 }
