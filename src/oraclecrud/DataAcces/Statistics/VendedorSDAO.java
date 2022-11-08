@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class VendedorSDAO extends ConnectionOracle {
     private static final String FIND_STATISTICS_SELLER = "select vd.codigo, vd.nombre, s.nombre as sucursal, sum(nro_unidades) as TotalUni from vendedor vd join venta v on v.vendedor = vd.codigo join sucursal s on v.sucursal = s.codigo group by vd.codigo, vd.nombre, s.nombre order by vd.CODIGO";
-    private static final String FIND_SIZE = "SELECT count(*) as rowCount from (" + FIND_STATISTICS_SELLER + ")";
+    ArrayList<Vendedor> collectionSeller = new ArrayList<>();
 
     public ArrayList<Vendedor> findStatistics() throws NoDataException, GlobalException {
 
@@ -27,61 +27,23 @@ public class VendedorSDAO extends ConnectionOracle {
 
         ResultSet result = null;
         Statement query;
-        ArrayList<Vendedor> collectionSeller = new ArrayList<>();
         VentaDetail tmpVentaDetail;
         Vendedor tmpSeller;
-        int code = -1;
-        int counter = 0;
-        String nameSeller = "";
+        int code;
 
         try{
             query = conn.createStatement();
-
-            result = query.executeQuery(FIND_SIZE);
-            result.next();
-            int size = result.getInt("rowCount");
-
             result = query.executeQuery(FIND_STATISTICS_SELLER);
 
-            ArrayList<VentaDetail> mySales = new ArrayList<>();
-
             while (result.next()){
-                if(counter == 0){
-                    tmpVentaDetail = new VentaDetail(
-                            result.getString("sucursal"),
-                            result.getInt("totalUni")
-                    );
-                    mySales.add(tmpVentaDetail);
-                    code = result.getInt("codigo");
-                    nameSeller = result.getString("nombre");
-                    counter += 1;
-                }else{
-                    if(result.getInt("codigo")== code){
-                        tmpVentaDetail = new VentaDetail(
-                                result.getString("sucursal"),
-                                result.getInt("totalUni")
-                        );
-                        mySales.add(tmpVentaDetail);
-                        counter += 1;
-                        if (counter == size){
-                            tmpSeller = new Vendedor(code,nameSeller, new ArrayList<>(mySales));
-                            collectionSeller.add(tmpSeller);
-                        }
-                    }else{
-                        tmpSeller = new Vendedor(code,nameSeller, new ArrayList<>(mySales));
-                        collectionSeller.add(tmpSeller);
-                        mySales.clear();
-
-                        tmpVentaDetail = new VentaDetail(
-                                result.getString("sucursal"),
-                                result.getInt("totalUni")
-                        );
-                        mySales.add(tmpVentaDetail);
-                        code = result.getInt("codigo");
-                        nameSeller = result.getString("nombre");
-                        counter += 1;
-                    }
-                }
+                code  = result.getInt("codigo");
+                tmpSeller = searchSeller(code);
+                tmpSeller.setNombre(result.getString("nombre"));
+                tmpVentaDetail = new VentaDetail(
+                        result.getString("sucursal"),
+                        result.getInt("TotalUni")
+                );
+                tmpSeller.addVentaDetail(tmpVentaDetail);
             }
 
         }catch (SQLException e){
@@ -101,5 +63,16 @@ public class VendedorSDAO extends ConnectionOracle {
             throw new NoDataException("No hay datos");
         }
         return collectionSeller;
+    }
+    private Vendedor searchSeller(int code){
+        Vendedor tmpSeller = new Vendedor();
+        for (Vendedor s: collectionSeller){
+            if(s.getCodigo() == code){
+                return s;
+            }
+        }
+        tmpSeller.setCodigo(code);
+        collectionSeller.add(tmpSeller);
+        return tmpSeller;
     }
 }

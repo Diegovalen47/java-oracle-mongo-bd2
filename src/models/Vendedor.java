@@ -3,32 +3,21 @@ package models;
 import java.util.ArrayList;
 
 public class Vendedor {
-    private final int codigo;
-    private final String nombre;
+    private int codigo;
+    private String nombre;
 
-    private final ArrayList<VentaDetail> misVentas;
+    private ArrayList<VentaDetail> misVentas;
 
-    private final int grantotal;
+    private int granTotal;
+
+    public Vendedor() {
+        this.misVentas = new ArrayList<>();
+        this.granTotal = 0;
+    }
 
     public Vendedor(int codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        misVentas = null;
-        grantotal = 0;
-    }
-    public Vendedor(int codigo, String nombre, ArrayList<VentaDetail> misVentas) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.misVentas = misVentas;
-        grantotal = calculatedGranTotal();
-
-    }
-    private int calculatedGranTotal() {
-        int granTotal = 0;
-        for(VentaDetail temp : misVentas){
-            granTotal += temp.getTotalUni();
-        }
-        return granTotal;
     }
 
     public int getCodigo() {
@@ -43,15 +32,27 @@ public class Vendedor {
         return misVentas;
     }
     public int getGrantotal() {
-        return grantotal;
+        return granTotal;
     }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void addVentaDetail(VentaDetail ventaDetail) {
+        this.misVentas.add(ventaDetail);
+        this.granTotal += ventaDetail.getTotalUni();
+    }
+
     @Override
     public String toString() {
         return "Vendedor{" +
                 "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
-                ", misVentas=" + misVentas +
-                ", grantotal=" + grantotal +
                 '}';
     }
 }
