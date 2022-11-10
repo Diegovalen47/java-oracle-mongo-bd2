@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class VentaDAO extends ConnectionOracle{
+    /*
+     * Clase para el manejo de la tabla venta
+     * */
     private static final String FINDALL_VENTA = "SELECT * FROM venta";
     public Collection<Venta> findAllVentas() throws NoDataException, GlobalException{
 
@@ -42,18 +45,21 @@ public class VentaDAO extends ConnectionOracle{
             query = conn.createStatement();
             result = query.executeQuery(FINDALL_VENTA);
             while (result.next()){
+
                 tempSucursal = tempSucursalDAO.findSucursal(result.getInt("sucursal"));
                 tempVendedor = tempVendedorDAO.findVendedor(result.getInt("vendedor"));
                 tempCliente = tempClienteDAO.findCliente(result.getInt("cliente"));
                 tempProducto = tempProductoDAO.findProducto(result.getInt("producto"));
                 tempVenta = new Venta(
-                        result.getInt("codventa"),
-                        tempSucursal,
-                        tempVendedor,
-                        tempCliente,
-                        tempProducto,
-                        result.getInt("nro_unidades")
+                    result.getInt("codventa"),
+                    tempSucursal,
+                    tempVendedor,
+                    tempCliente,
+                    tempProducto,
+                    result.getInt("nro_unidades")
+
                 );
+
                 collection.add(tempVenta);
             }
         }catch (SQLException e){

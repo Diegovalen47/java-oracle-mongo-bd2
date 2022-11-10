@@ -8,7 +8,9 @@ import oraclecrud.DataAcces.ProductoDAO;
 import java.util.Collection;
 
 public class ShowProducto {
-
+    /*
+     * Clase para imprimir los datos de la tabla producto
+     * */
     public ShowProducto() {
     }
 

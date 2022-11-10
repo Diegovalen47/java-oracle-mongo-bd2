@@ -9,11 +9,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class VendedorDAO extends ConnectionOracle{
+    /*
+     * Clase para el manejo de la tabla vendedor
+     * */
+    // Query para obtener todos los vendedores
     private static final String FINDALL_VENDEDOR = "SELECT * FROM vendedor";
+    // Query para obtener un vendedor por su codigo
     private static final String FINDONE_VENDEDOR = "SELECT * FROM vendedor WHERE codigo =";
 
     public Collection<Vendedor> findAllVendedor() throws NoDataException, GlobalException{
-
+        /*
+        * Metodo encargado de obtener todos los vendedores y retornarlos en una lista con
+        * sus ventas asociadas
+        * */
         try{
             Connect();
         }catch (ClassNotFoundException e){
@@ -30,11 +38,15 @@ public class VendedorDAO extends ConnectionOracle{
         try{
             query = conn.createStatement();
             result = query.executeQuery(FINDALL_VENDEDOR);
-            while (result.next()){
+            // Se recorren las filas obtenidas y se crean los objetos de vendedor
+            while (result.next()) {
+
                 tmpVendedor = new Vendedor(
-                        result.getInt("codigo"),
-                        result.getString("nombre")
+                    result.getInt("codigo"),
+                    result.getString("nombre")
                 );
+
+                // Se agrega el vendedor a la lista
                 collection.add(tmpVendedor);
             }
         }catch (SQLException e){
@@ -42,9 +54,11 @@ public class VendedorDAO extends ConnectionOracle{
             throw new GlobalException("Sentencia SQL invalida");
         } finally {
             try {
-                if(result!= null){
+                if(result!= null) {
+                    // Se cierra el cursor
                     result.close();
                 }
+                // Nos desconectamos de la base de datos
                 Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");
@@ -56,7 +70,9 @@ public class VendedorDAO extends ConnectionOracle{
         return collection;
     }
     public Vendedor findVendedor(int codigo) throws GlobalException{
-
+        /*
+         * Funcion para buscar un vendedor por su codigo en Oracle
+         * */
         try{
             Connect();
         }catch (ClassNotFoundException e){
@@ -71,22 +87,24 @@ public class VendedorDAO extends ConnectionOracle{
 
         try{
             query = conn.createStatement();
-            //TODO:¿Se puede quitar ValueOf?
             result = query.executeQuery(FINDONE_VENDEDOR + String.valueOf(codigo));
+            // Se recorren las filas obtenidas y se crea el objeto de vendedor
             while (result.next()){
                 vendedor = new Vendedor(
-                        result.getInt("codigo"),
-                        result.getString("nombre")
+                    result.getInt("codigo"),
+                    result.getString("nombre")
                 );
             }
-        }catch (SQLException e){
+        }catch (SQLException e) {
             e.printStackTrace();
             throw new GlobalException("Sentencia SQL invalida");
         } finally {
             try {
                 if(result!= null){
+                    // Se cierra el cursor
                     result.close();
                 }
+                // Nos desconectamos de la base de datos
                 Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");

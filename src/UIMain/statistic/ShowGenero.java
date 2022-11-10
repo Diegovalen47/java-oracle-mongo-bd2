@@ -8,6 +8,9 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 public class ShowGenero {
+    /*
+     * Clase para imprimir los datos de la coleccion genero
+     * */
 
     public ShowGenero() {
     }
@@ -20,7 +23,7 @@ public class ShowGenero {
         int granGranTotal = 0;
 
         try {
-            generos = generoDAC.finAll();
+            generos = generoDAC.findAll();
         } catch (NoDataException ex) {
             throw new RuntimeException(ex);
         }

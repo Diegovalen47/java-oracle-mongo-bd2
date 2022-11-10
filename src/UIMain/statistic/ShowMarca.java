@@ -8,6 +8,9 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 public class ShowMarca {
+    /*
+     * Clase para imprimir los datos de la coleccion marca
+     * */
 
     public ShowMarca() {
     }

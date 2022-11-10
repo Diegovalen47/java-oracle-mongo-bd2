@@ -8,6 +8,9 @@ import oraclecrud.DataAcces.VentaDAO;
 import java.util.Collection;
 
 public class ShowVenta {
+    /*
+     * Clase para imprimir los datos de la tabla venta
+     * */
     public ShowVenta() {
     }
 

@@ -10,7 +10,9 @@ import oraclecrud.DataAcces.VendedorDAO;
 import java.util.Collection;
 
 public class ShowVendedor {
-
+    /*
+     * Clase para imprimir los datos de la tabla vendedor
+     * */
     public ShowVendedor() {
     }
 

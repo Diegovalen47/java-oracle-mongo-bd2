@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ProductoDAO extends ConnectionOracle{
+    /*
+     * Clase para el manejo de la tabla producto
+     * */
     private static final String FINDALL_PRODUCTO = "SELECT * FROM producto";
     private static final String FINDONE_PRODUCTO = "SELECT * FROM producto WHERE codigo =";
 
@@ -28,16 +31,21 @@ public class ProductoDAO extends ConnectionOracle{
         Producto tmpProducto;
 
         try{
+
             query = conn.createStatement();
             result = query.executeQuery(FINDALL_PRODUCTO);
+
             while (result.next()){
+
                 tmpProducto = new Producto(
-                        result.getInt("codigo"),
-                        result.getString("nombre"),
-                        result.getString("tipo"),
-                        result.getString("marca")
+                    result.getInt("codigo"),
+                    result.getString("nombre"),
+                    result.getString("tipo"),
+                    result.getString("marca")
                 );
+
                 collection.add(tmpProducto);
+
             }
         }catch (SQLException e){
             e.printStackTrace();

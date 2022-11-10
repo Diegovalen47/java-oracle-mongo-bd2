@@ -72,7 +72,7 @@ public class Venta {
                 "        tipo = " + producto.getTipo() + "\n" +
                 "        marca = " + producto.getMarca() + "\n" +
                 "    }\n" +
-                "    numero unidades =" + nro_unidades +
+                "    numero unidades =" + nro_unidades + "\n" +
                 "}\n";
     }
 }

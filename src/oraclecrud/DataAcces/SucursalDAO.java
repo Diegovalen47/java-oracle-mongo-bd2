@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SucursalDAO extends ConnectionOracle {
+    /*
+     * Clase para el manejo de la tabla sucursal
+     * */
     private static final String FINDALL_SUCURSAL = "SELECT * FROM sucursal";
     private static final String FINDONE_SUCURSAL = "SELECT * FROM sucursal WHERE codigo =";
 
@@ -28,13 +31,17 @@ public class SucursalDAO extends ConnectionOracle {
         Sucursal sucursal = null;
 
         try{
+
             query = conn.createStatement();
             result = query.executeQuery(FINDALL_SUCURSAL);
+
             while (result.next()){
+
                 sucursal = new Sucursal(
-                        result.getInt("codigo"),
-                        result.getString("nombre")
+                    result.getInt("codigo"),
+                    result.getString("nombre")
                 );
+
                 collection.add(sucursal);
             }
         }catch (SQLException e){

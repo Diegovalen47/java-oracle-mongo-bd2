@@ -8,6 +8,9 @@ import oraclecrud.DataAcces.NoDataException;
 import java.util.Collection;
 
 public class ShowCliente {
+    /*
+     * Clase para imprimir los datos de la tabla cliente
+     * */
 
     public ShowCliente() {
     }

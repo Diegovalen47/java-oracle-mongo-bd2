@@ -40,23 +40,27 @@ public class GeneroDAC extends ConnectionMongo {
 
         // Create collection if doesn't exits
         MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
-
+        // Se borra la collecion cada vez que se vuelvan a ingreaar los datos
         collection.drop();
 
         try{
+            // Obtenemos las estadisticas en un arreglo de generos
             statisticsIn = new ArrayList<>(dao.findStatistics());
         }catch (GlobalException | NoDataException ge){
             System.out.println(ge);
         }
 
+        // Se recorre el arreglo de generos para crear un arreglo de documentos
+        // compatible con MongoDB y sus colecciones
         for(Genero genero:statisticsIn){
             statisticsOut.add(getDocument(genero));
         }
 
-
         if(statisticsOut.size()==0){
             throw new NoDataException("No hay nada Pa");
         }
+
+        // Se insertan los documentos en la coleccion
         collection.insertMany(statisticsOut);
 
     }
@@ -64,8 +68,7 @@ public class GeneroDAC extends ConnectionMongo {
     private Document getDocument(Genero genero) {
         /*
         * Este metodo se encarga de convertir un objeto de tipo Genero en un documento de tipo Document
-        * @param genero: objeto de tipo Genero
-        *
+        * con el formato esperado en la collecion de generos en MongoDB
         * */
         String SUCURSAL = "nomsucursal";
         String TIPOPRODUCTO = "TipoProd";
@@ -76,20 +79,25 @@ public class GeneroDAC extends ConnectionMongo {
 
         doc1.append(NOMBRE_GENERO,genero.getGenero());
 
-        for(VentaDetail vd : genero.getVentaDetail()){
+        for(VentaDetail vd : genero.getVentaDetail()) {
+
             Document doc2 = new Document();
+
             doc2.append(SUCURSAL,vd.getNomSucursal());
             doc2.append(TIPOPRODUCTO,vd.getTipoProd());
             doc2.append(TOTALUN,vd.getTotalUni());
+
             misVentas.add(doc2);
+
         }
+
         doc1.append(MIS_VENTAS,misVentas);
         doc1.append(GRANTOTAL, genero.getGranTotal());
 
         return doc1;
     }
 
-    public FindIterable<Document> finAll() throws MongoException, NoDataException {
+    public FindIterable<Document> findAll() throws MongoException, NoDataException {
         /*
         * Metodo encargado de retornar todos los documetos
         * de la coleccion genero en un iterable
@@ -101,15 +109,17 @@ public class GeneroDAC extends ConnectionMongo {
         }
         database = client.getDatabase(DATA_BASE_NAME);
 
-        // Create collection if doesn't exits
+        // Obtenemos la collecion de generos en MongoDB
         MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
 
+        // Se obtiene el tamano de la colleccion
         int gendersCount = (int) collection.count();
 
         if(gendersCount==0){
             throw new NoDataException("No hay nada Pa");
         }
 
+        // Obtenemos todos los documentos de la collecion en un iterable
         FindIterable<Document> genders  = collection.find();
 
         return genders;

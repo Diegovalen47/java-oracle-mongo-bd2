@@ -8,7 +8,9 @@ import oraclecrud.DataAcces.SucursalDAO;
 import java.util.Collection;
 
 public class ShowSucursal {
-
+    /*
+     * Clase para imprimir los datos de la tabla sucursal
+     * */
     public ShowSucursal() {
     }
 

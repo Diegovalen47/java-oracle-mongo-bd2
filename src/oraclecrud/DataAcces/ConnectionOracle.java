@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionOracle {
+    /*
+     * Clase para la conexion a la base de datos de oracle
+     * */
     protected Connection conn = null;
 
     public ConnectionOracle() {}

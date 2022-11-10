@@ -8,6 +8,9 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 public class ShowVendedorStat {
+    /*
+     * Clase para imprimir los datos de la coleccion vendedor
+     * */
 
     public ShowVendedorStat() {
     }

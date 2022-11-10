@@ -7,6 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TablesDB extends ConnectionOracle{
+    /*
+     * Clase para el manejo de las tablas y su obtencion
+     * dinamica en el front end
+     * */
     private static final String FINDALL_TABLES = "SELECT TNAME FROM TAB";
 
     public ArrayList<String> finAllTables() throws NoDataException, GlobalException{

@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ClienteDAO extends  ConnectionOracle{
+    /*
+    * Clase para el manejo de la tabla cliente
+    * */
     private static final String FINDALL_CLIENTE = "SELECT * FROM cliente";
     private static final String FINDONE_CLIENTE = "SELECT * FROM cliente WHERE codigo =";
 
@@ -26,14 +29,18 @@ public class ClienteDAO extends  ConnectionOracle{
         Cliente tmpCliente;
 
         try{
+
             query = conn.createStatement();
             result = query.executeQuery(FINDALL_CLIENTE);
+
             while (result.next()){
+
                 tmpCliente = new Cliente(
-                        result.getInt("codigo"),
-                        result.getString("nombre"),
-                        (result.getString("genero") == null) ? "Unknown" : result.getString("genero")
+                    result.getInt("codigo"),
+                    result.getString("nombre"),
+                    (result.getString("genero") == null) ? "Unknown" : result.getString("genero")
                 );
+
                 collection.add(tmpCliente);
             }
         }catch (SQLException e){
@@ -71,7 +78,6 @@ public class ClienteDAO extends  ConnectionOracle{
 
         try{
             query = conn.createStatement();
-            // TODO:¿Se pude quitar ValueOf?
             result = query.executeQuery(FINDONE_CLIENTE + String.valueOf(codigo));
             while (result.next()){
                 cliente = new Cliente(
