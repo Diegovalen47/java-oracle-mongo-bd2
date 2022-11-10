@@ -150,26 +150,6 @@ public class Interfaz {
 
             }
         });
-
-        comboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textArea1.setText("Autores: \n" +
-                        "- Diego Valentin Osorio Marin\n" +
-                        "- Santiago Castro Tabares\n" +
-                        "- Jan Michael Muñoz Botero");
-            }
-        });
-
-        comboBox2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textArea1.setText("Autores: \n" +
-                        "- Diego Valentin Osorio Marin\n" +
-                        "- Santiago Castro Tabares\n" +
-                        "- Jan Michael Muñoz Botero");
-            }
-        });
         limpiarConsultaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
