@@ -29,8 +29,8 @@ public class Interfaz {
     private JComboBox comboBox2;
     private JButton limpiarConsultaButton;
 
-
     public Interfaz() {
+    // hola pacho y juan felipe
     /*
     * Este método se encarga de inicializar la interfaz
     * */
