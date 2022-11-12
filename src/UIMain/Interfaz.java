@@ -30,7 +30,6 @@ public class Interfaz {
     private JButton limpiarConsultaButton;
 
     public Interfaz() {
-    // hola pacho y juan felipe
     /*
     * Este método se encarga de inicializar la interfaz
     * */
