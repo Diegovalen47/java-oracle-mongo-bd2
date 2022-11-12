@@ -64,7 +64,7 @@ public class Venta {
                 "    cliente {\n" +
                 "        codigo = " + cliente.getCodigo() + "\n" +
                 "        nombre = " + cliente.getNombre() + "\n" +
-                "        genero = " + cliente.getGenero() + "\n" +
+                "        genero = " + (cliente.getGenero() == null ? "Unknown" : cliente.getGenero()) + "\n" +
                 "    }\n" +
                 "    producto {\n" +
                 "        codigo = " + producto.getCodigo() + "\n" +

@@ -6,6 +6,7 @@ import oraclecrud.DataAcces.NoDataException;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class ShowGenero {
     /*
@@ -16,6 +17,12 @@ public class ShowGenero {
     }
 
     public String printGenero() {
+
+
+        Hashtable<String, String> generosString = new Hashtable<String, String>();
+        generosString.put("m", "Maculino");
+        generosString.put("f", "Femenino");
+        generosString.put("Unknown", "Desconocido");
 
         GeneroDAC generoDAC = new GeneroDAC();
         FindIterable<Document> generos;
@@ -34,7 +41,7 @@ public class ShowGenero {
 
             finalText = finalText + "------------------------------------------------------\n";
 
-            finalText = finalText + "Genero: " + d.getString("genero") + "\n";
+            finalText = finalText + "Genero: " + generosString.get(d.getString("genero")) + "\n";
 
             finalText = finalText + "------------------------------------------------------\n";
 

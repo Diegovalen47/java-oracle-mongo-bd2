@@ -142,3 +142,9 @@ INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades
 INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (5, 4, 2, 1, 1, 70);
 INSERT INTO venta (codventa, sucursal, vendedor, cliente, producto, nro_unidades) VALUES (6, 4, 1, 3, 4, 1);
 
+
+
+
+
+
+
