@@ -2,6 +2,7 @@ package oraclecrud.DataAcces;
 
 import models.Sucursal;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,15 +63,9 @@ public class SucursalDAO extends ConnectionOracle {
         }
         return collection;
     }
-    public Sucursal findSucursal(int codigo) throws NoDataException, GlobalException{
+    public Sucursal findSucursal(int codigo, Connection conn) throws NoDataException, GlobalException{
 
-        try{
-            Connect();
-        }catch (ClassNotFoundException e){
-            throw new GlobalException("No se pudo cargar el driver JDBC");
-        }catch (SQLException e ){
-            throw new GlobalException("No hay conexion con la base de datos");
-        }
+
 
         ResultSet result = null;
         Statement query = null;
@@ -93,7 +88,6 @@ public class SucursalDAO extends ConnectionOracle {
                 if(result!= null){
                     result.close();
                 }
-                Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");
             }

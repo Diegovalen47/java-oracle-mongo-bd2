@@ -1,6 +1,8 @@
 package oraclecrud.DataAcces;
 
 import models.Cliente;
+
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,15 +64,7 @@ public class ClienteDAO extends  ConnectionOracle{
         return collection;
     }
 
-    public Cliente findCliente(int codigo) throws NoDataException, GlobalException{
-
-        try{
-            Connect();
-        }catch (ClassNotFoundException e){
-            throw new GlobalException("No se pudo cargar el driver JDBC");
-        }catch (SQLException e ){
-            throw new GlobalException("No hay conexion con la base de datos");
-        }
+    public Cliente findCliente(int codigo, Connection conn) throws NoDataException, GlobalException{
 
         ResultSet result = null;
         Statement query = null;
@@ -94,7 +88,6 @@ public class ClienteDAO extends  ConnectionOracle{
                 if(result!= null){
                     result.close();
                 }
-                Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");
             }

@@ -2,6 +2,7 @@ package oraclecrud.DataAcces;
 
 import models.Vendedor;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,17 +70,11 @@ public class VendedorDAO extends ConnectionOracle{
         }
         return collection;
     }
-    public Vendedor findVendedor(int codigo) throws GlobalException{
+    public Vendedor findVendedor(int codigo, Connection conn) throws GlobalException{
         /*
          * Funcion para buscar un vendedor por su codigo en Oracle
          * */
-        try{
-            Connect();
-        }catch (ClassNotFoundException e){
-            throw new GlobalException("No se pudo cargar el driver JDBC");
-        }catch (SQLException e ){
-            throw new GlobalException("No hay conexion con la base de datos");
-        }
+
 
         ResultSet result = null;
         Statement query;
@@ -104,8 +99,6 @@ public class VendedorDAO extends ConnectionOracle{
                     // Se cierra el cursor
                     result.close();
                 }
-                // Nos desconectamos de la base de datos
-                Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");
             }

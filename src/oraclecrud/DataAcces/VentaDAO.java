@@ -46,10 +46,10 @@ public class VentaDAO extends ConnectionOracle{
             result = query.executeQuery(FINDALL_VENTA);
             while (result.next()){
 
-                tempSucursal = tempSucursalDAO.findSucursal(result.getInt("sucursal"));
-                tempVendedor = tempVendedorDAO.findVendedor(result.getInt("vendedor"));
-                tempCliente = tempClienteDAO.findCliente(result.getInt("cliente"));
-                tempProducto = tempProductoDAO.findProducto(result.getInt("producto"));
+                tempSucursal = tempSucursalDAO.findSucursal(result.getInt("sucursal"), conn);
+                tempVendedor = tempVendedorDAO.findVendedor(result.getInt("vendedor"), conn);
+                tempCliente = tempClienteDAO.findCliente(result.getInt("cliente"), conn);
+                tempProducto = tempProductoDAO.findProducto(result.getInt("producto"), conn);
                 tempVenta = new Venta(
                     result.getInt("codventa"),
                     tempSucursal,

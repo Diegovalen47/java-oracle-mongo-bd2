@@ -2,6 +2,7 @@ package oraclecrud.DataAcces;
 
 import models.Producto;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,15 +67,7 @@ public class ProductoDAO extends ConnectionOracle{
         return collection;
     }
 
-    public Producto findProducto(int codigo) throws GlobalException{
-
-        try{
-            Connect();
-        }catch (ClassNotFoundException e){
-            throw new GlobalException("No se pudo cargar el driver JDBC");
-        }catch (SQLException e ){
-            throw new GlobalException("No hay conexion con la base de datos");
-        }
+    public Producto findProducto(int codigo, Connection conn) throws GlobalException{
 
         ResultSet result = null;
         Statement query;
@@ -100,7 +93,6 @@ public class ProductoDAO extends ConnectionOracle{
                 if(result!= null){
                     result.close();
                 }
-                Disconnect();
             }catch (SQLException e){
                 throw new GlobalException("Estados invalidos");
             }
