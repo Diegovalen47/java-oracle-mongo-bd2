@@ -12,6 +12,8 @@ Nota: Para el correcto funcionamiento del proyecto
 - En las clases ConnectionMongo (uibcada en el paquete mogodbcrud) y ConnectionOracle (ubicada en el paquete oraclecrud/DataAcces) configurar los parámetros de conexión a las bases de datos de MongoDB y Oracle respectivamente.
 - Ejecutar la clase interfaz.java (Ubicada en el paquete UIMain)
 
+Se asume que se tiene installado Oracle 11g y MongoDB 5.0.13
+
 
 
 
