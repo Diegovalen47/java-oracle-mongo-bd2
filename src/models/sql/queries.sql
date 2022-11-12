@@ -15,4 +15,3 @@ select vd.codigo, vd.nombre, s.nombre as sucursal, sum(nro_unidades) as TotalUni
 from vendedor vd join venta v on v.vendedor = vd.codigo join sucursal s on v.sucursal = s.codigo
 group by vd.codigo, vd.nombre, s.nombre
 order by vd.CODIGO
-
